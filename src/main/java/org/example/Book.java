@@ -68,10 +68,28 @@ public class  Book {
 
     //check in and check out methods
     public void checkIn() {
+        if(isCheckedOut){
+            isCheckedOut = false;
+            checkedOutTo = "";
+            System.out.println(title + " checked in.");
 
+        } else {
+            System.out.println(title + "is already checked in.");
+        }
     }
 
-    public void checkOut() {
+    // ! reverses the boolean value. so if it's true, ! makes it false
+    // String name(variable) is only local to the checkOut method
+    public void checkOut(String name) {
+        if(!isCheckedOut) {
+            isCheckedOut = true;
+            checkedOutTo = name;
+            System.out.println(title + " is checked out to " + name + ".");
+
+        }else {
+            System.out.println(title + " is already checked out to " + checkedOutTo + ".");
+        }
+
 
     }
 

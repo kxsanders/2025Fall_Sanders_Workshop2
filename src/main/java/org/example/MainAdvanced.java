@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 //If you're feeling more advanced we can use methods to break up
 //our code so everything isn't crammed into main
+
 public class MainAdvanced {
     // moving Book array directly into MainAdvanced instead of its own class
     static Book[] books = new Book[20];
@@ -34,31 +35,66 @@ public class MainAdvanced {
         books[18] = new Book(19, "9780553588484", "Mistborn: The Final Empire");
         books[19] = new Book(20, "9780765350381", "The Blade Itself");
 
-        displayAllBooks();
+
+        while (true) {
+            System.out.println("Library Home");
+            System.out.println("1) Show Available Books");
+            System.out.println("2) Show Checked Out Books");
+            System.out.println("3) Check In a Book");
+            System.out.println("4) Exit");
+            String userInput = scanner.nextLine().trim();
+
+            switch (userInput) {
+                case "1":
+                    displayAllBooks();
+                    break;
+                case "2":
+                    displayBooksByStatus(true);
+                    break;
+                case "3":
+                    //checkInBook
+                    break;
+                case "4":
+                    System.out.println("Thank you and come again.");
+                    System.exit(0);
+                default:
+                    System.out.println("Please type 1, 2, 3, or 4");
+                    break;
+
+            }
+        }
     }
 
-    //main is static so these methods must also be static
-    //the book class methods will NOT be static
 
-    public static void displayAllBooks(){
+        //main is static so these methods must also be static
+        //the book class methods will NOT be static
 
-        // b is variable. for each Book b in Books = Book b: books
-        for(Book b : books) {
-            System.out.println("ID: " + b.getId());
-            System.out.println("ISBN: " + b.getIsbn());
-            System.out.println("Title: " + b.getTitle());
-            System.out.println("Checked out: " + b.isCheckedOut());
-            System.out.println("Checked in: " + b.getCheckedOutTo());
-            System.out.println(); //blank line for spacing between each book
 
-    }
+    public static void displayAllBooks() {
 
-    //public static void displayBooksByStatus(boolean isCheckedIn){
+            // b is variable. for each Book b in Books = Book b: books
+            for (Book b : MainAdvanced.books) {
+                System.out.println("ID: " + b.getId());
+                System.out.println("ISBN: " + b.getIsbn());
+                System.out.println("Title: " + b.getTitle());
+                System.out.println("Checked out: " + b.isCheckedOut());
+                System.out.println("Checked in: " + b.getCheckedOutTo());
+                System.out.println(); //blank line for spacing between each book
 
-    }
+            }
+        }
 
-   // public static void checkInBook(Scanner scanner){
+        // print the book if it's checked in when I want checked-in books.
+        // Also, print if it's checked out when I want checked out books.
+        public static void displayBooksByStatus ( boolean isCheckedIn){
+        }
+
+
+        // public static void checkInBook (Scanner scanner) {}
         //Yes, pass the scanner from the main method into this method
         //Use it to ask the person for their name, then use the
         //book's check in method
-    }
+
+}
+
+

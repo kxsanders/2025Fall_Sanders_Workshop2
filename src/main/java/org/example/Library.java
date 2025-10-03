@@ -26,8 +26,14 @@ public class Library {
         books[18] = new Book(19, "9780553588484", "Mistborn: The Final Empire");
         books[19] = new Book(20, "9780765350381", "The Blade Itself");
 
-        for(int i = 0; i < books.length; i++) {
-            System.out.println(books[i]);
+        for(Book b : books) {
+            System.out.println("ID: " + b.getId());
+            System.out.println("ISBN: " + b.getIsbn());
+            System.out.println("Title: " + b.getTitle());
+            System.out.println("Checked out: " + b.isCheckedOut());
+            System.out.println("Checked in: " + b.getCheckedOutTo());
+            System.out.println(); //blank line for spacing between each book
+
         }
     }
 }

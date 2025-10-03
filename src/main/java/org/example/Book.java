@@ -79,7 +79,7 @@ public class  Book {
     public class Library {
         public static void main(String[] args) {
             //Array of 20 different fantasy books generated from ChatGPT
-            Book[] books = new Book[20];
+            Book[] books = new Book[20]
 
             books[0] = new Book(1, "9780261103573", "The Fellowship of the Ring");
             books[1] = new Book(2, "9780261102361", "The Two Towers");

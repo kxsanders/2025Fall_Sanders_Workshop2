@@ -52,7 +52,7 @@ public class MainAdvanced {
                     displayBooksByStatus(true);
                     break;
                 case "3":
-                    //checkInBook
+                    checkInBook(scanner);
                     break;
                 case "4":
                     System.out.println("Thank you and come again.");
@@ -72,28 +72,61 @@ public class MainAdvanced {
 
     public static void displayAllBooks() {
 
-            // b is variable. for each Book b in Books = Book b: books
+            // b is variable. for each Book b in Books = Book b : books
             for (Book b : MainAdvanced.books) {
                 System.out.println("ID: " + b.getId());
                 System.out.println("ISBN: " + b.getIsbn());
                 System.out.println("Title: " + b.getTitle());
                 System.out.println("Checked out: " + b.isCheckedOut());
                 System.out.println("Checked in: " + b.getCheckedOutTo());
-                System.out.println(); //blank line for spacing between each book
+                System.out.println(); //blank to space lines between each book
 
             }
         }
 
-        // print the book if it's checked in when I want checked-in books.
-        // Also, print if it's checked out when I want checked out books.
-        public static void displayBooksByStatus ( boolean isCheckedIn){
+        // Show books by status
+        // Also, print who it's checked out to
+        public static void displayBooksByStatus ( boolean isCheckedOut){
+
+            for (Book b : books) {
+                if(b.isCheckedOut() == isCheckedOut) {
+                    System.out.println("ID: " + b.getId());
+                    System.out.println("ISBN: " + b.getIsbn());
+                    System.out.println("Title: " + b.getTitle());
+                    System.out.println("Checked out to: " + b.getCheckedOutTo());
+                    System.out.println(); //blank to space lines
+
+                    if (isCheckedOut) {
+                        System.out.println("Checked out to: " + b.getCheckedOutTo());
+                    }
+                    System.out.println();//blank to space lines
+                }
+
+            }
+
         }
 
+    //Yes, pass the scanner from the main method into this method
 
-        // public static void checkInBook (Scanner scanner) {}
-        //Yes, pass the scanner from the main method into this method
-        //Use it to ask the person for their name, then use the
-        //book's check in method
+         public static void checkInBook (Scanner scanner) {
+             //Use it to ask the person for their name
+             System.out.println("What is your name?");
+             String name = scanner.nextLine();
+
+             System.out.println("Hello " + name + "! Enter the ID of the book you want to check in.");
+             String input = scanner.nextLine();
+
+             //use the book's check in method
+             for(Book b : books) {
+                 //check if book matches the id that the user types
+                 //if book is checked out, call checkIn() to check it in.
+                 //if the book isn't checked out, display message that it is not checked out
+             }
+
+         }
+
+
+
 
 }
 

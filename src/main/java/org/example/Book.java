@@ -65,7 +65,6 @@ public class  Book {
         this.checkedOutTo = checkedOutTo;
     }
 
-
     //check in and check out methods
     public void checkIn() {
         if(isCheckedOut){
@@ -74,7 +73,7 @@ public class  Book {
             System.out.println(title + " checked in.");
 
         } else {
-            System.out.println(title + "is already checked in.");
+            System.out.println(title + " is already checked in.");
         }
     }
 

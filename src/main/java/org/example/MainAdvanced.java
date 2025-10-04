@@ -6,7 +6,7 @@ import java.util.Scanner;
 //our code so everything isn't crammed into main
 
 public class MainAdvanced {
-    // moving Book array directly into MainAdvanced instead of its own class
+
     static Book[] books = new Book[20];
 
     public static void main(String[] args) {
@@ -49,7 +49,7 @@ public class MainAdvanced {
                     displayAllBooks();
                     break;
                 case "2":
-                    displayBooksByStatus(true);
+                    displayBooksByStatus(scanner, true);
                     break;
                 case "3":
                     checkInBook(scanner);
@@ -66,68 +66,96 @@ public class MainAdvanced {
     }
 
 
-        //main is static so these methods must also be static
-        //the book class methods will NOT be static
+    //main is static so these methods must also be static
+    //the book class methods will NOT be static
 
 
     public static void displayAllBooks() {
 
-            // b is variable. for each Book b in Books = Book b : books
-            for (Book b : MainAdvanced.books) {
+        // b is variable. for each Book b in Books = Book b : books
+        for (Book b : MainAdvanced.books) {
+            System.out.println("ID: " + b.getId());
+            System.out.println("ISBN: " + b.getIsbn());
+            System.out.println("Title: " + b.getTitle());
+            System.out.println("Checked out: " + b.isCheckedOut());
+            System.out.println("Checked in: " + b.getCheckedOutTo());
+            System.out.println(); //blank to space lines between each book
+
+        }
+    }
+
+    // Show books by status
+    // Also, print who it's checked out to
+    public static void displayBooksByStatus(Scanner scanner, boolean isCheckedOut) {
+
+        int count = 0; //counts how many books match the status
+
+        for (Book b : books) {
+            if (b.isCheckedOut() == isCheckedOut) {
                 System.out.println("ID: " + b.getId());
                 System.out.println("ISBN: " + b.getIsbn());
                 System.out.println("Title: " + b.getTitle());
-                System.out.println("Checked out: " + b.isCheckedOut());
-                System.out.println("Checked in: " + b.getCheckedOutTo());
-                System.out.println(); //blank to space lines between each book
+                System.out.println("Checked out to: " + b.getCheckedOutTo());
+                System.out.println(); //blank to space lines
 
-            }
-        }
-
-        // Show books by status
-        // Also, print who it's checked out to
-        public static void displayBooksByStatus ( boolean isCheckedOut){
-
-            for (Book b : books) {
-                if(b.isCheckedOut() == isCheckedOut) {
-                    System.out.println("ID: " + b.getId());
-                    System.out.println("ISBN: " + b.getIsbn());
-                    System.out.println("Title: " + b.getTitle());
+                if (isCheckedOut) {
                     System.out.println("Checked out to: " + b.getCheckedOutTo());
-                    System.out.println(); //blank to space lines
-
-                    if (isCheckedOut) {
-                        System.out.println("Checked out to: " + b.getCheckedOutTo());
-                    }
-                    System.out.println();//blank to space lines
                 }
-
+                System.out.println();//blank to space lines
+                count ++;
             }
 
         }
+
+        if(count == 0){
+            if (isCheckedOut) {
+                System.out.println("There are no books checked out right now.");
+            } else {
+                System.out.println("All books are currently checked out.");
+            }
+        }
+
+        String letterInput = "";
+        while (true) {
+            System.out.println("Type C to check in a book, or X to return.");
+            String inputLetter = scanner.nextLine().trim();
+
+            if (inputLetter.equalsIgnoreCase("C")) {
+                checkInBook(scanner);
+                break;
+            }
+            if (inputLetter.equalsIgnoreCase("X")) {
+                break;
+            } else {
+                System.out.println("Please press either C or X to continue.");
+            }
+
+
+        }
+
+    }
 
     //Yes, pass the scanner from the main method into this method
 
-         public static void checkInBook (Scanner scanner) {
-             //Use it to ask the person for their name
-             System.out.println("What is your name?");
-             String name = scanner.nextLine();
+    public static void checkInBook(Scanner scanner) {
+        //Use it to ask the person for their name
+        System.out.println("What is your name?");
+        String name = scanner.nextLine();
 
-             System.out.println("Hello " + name + "! Enter the ID of the book you want to check in.");
-             String input = scanner.nextLine();
+        System.out.println("Hello " + name + "! Enter the ID number of the book you want to check in (1-20):");
+        String input = scanner.nextLine();
 
-             //use the book's check in method
-             for(Book b : books) {
-                 //check if book matches the id that the user types
-                 //if book is checked out, call checkIn() to check it in.
-                 //if the book isn't checked out, display message that it is not checked out
-             }
+        //use the book's check in method
+        for(Book b : books) {
+            if(input.equals("" + b.getId())) {
+                b.checkIn();
+                return;
+            }
+        }
+        System.out.println("No book found with that ID. Please enter 1-20.");
 
-         }
-
-
-
-
+    }
 }
+
 
 

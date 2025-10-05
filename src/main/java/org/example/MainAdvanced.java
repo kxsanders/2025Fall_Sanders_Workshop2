@@ -9,7 +9,6 @@ public class MainAdvanced {
 
     static Book[] books = new Book[20];
 
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -74,15 +73,14 @@ public class MainAdvanced {
         }
     }
 
-
     //main is static so these methods must also be static
     //the book class methods will NOT be static
-
 
     public static void displayAllBooks(Scanner scanner) {
         int count = 0;
 
         // b is the variable. for each Book b in Books = Book b : books
+        // ! reverses the boolean value
         for (Book b : books) {
             if (!b.isCheckedOut()) {
                 System.out.println("ID: " + b.getId());
@@ -122,7 +120,6 @@ public class MainAdvanced {
     // Also, print who it's checked out to
     public static void displayBooksByStatus(Scanner scanner) {
 
-
         int count = 0; //counts how many books match the status
 
         for (Book b : books) {
@@ -161,7 +158,6 @@ public class MainAdvanced {
     }
 
     //Yes, pass the scanner from the main method into this method
-
     public static void checkInBook(Scanner scanner) {
 
         System.out.println("Enter the ID number of the book you want to check in (0-19):");

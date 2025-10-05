@@ -83,7 +83,6 @@ public class  Book {
         if(!isCheckedOut) {
             isCheckedOut = true;
             checkedOutTo = name;
-            System.out.println(title + " is checked out to " + name + ".");
 
         }else {
             System.out.println(title + " is already checked out to " + checkedOutTo + ".");
